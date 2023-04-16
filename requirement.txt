@@ -1,0 +1,4 @@
+# Python version 3.11.3
+Django
+django-crontab
+fcntl

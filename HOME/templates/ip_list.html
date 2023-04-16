@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>IP Addresses</h2>
+
+  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="add_ip group">
+      <a href="{% url 'add_ip' %}" class="btn btn-primary">Add IP Address</a>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Download group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Download Files
+        <span class="caret"></span>
+      </button>
+      <div class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'download_ip_addresses' %}"> *.json</a></li>
+          <li><a class="dropdown-item" href="{% url 'download_script' 'ip_manager.ps1' %}"> *.pwsh</a></li>
+          <li><a class="dropdown-item" href="{% url 'download_script' 'ip_manager.sh' %}"> *.sh</a></li>
+      </div>
+    </div>
+    
+    <div class="btn-group" role="group" aria-label="load_data group">
+      <a href="{% url 'load_data' %}" class="btn btn-primary">Load Data</a>
+    </div>
+  </div>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Dynamic IP</th>
+        <th>Host Status</th>
+        <th>User Name</th>
+        <th>Latest Update</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ip in ip_addresses %}
+        <tr>
+          <td>{{ ip.dynamic_ip }}</td>
+          <td>
+              {% if ip.host_status == True %}
+                  <a class="btn btn-success">Alive</a>
+              {% else %}
+                  <a class="btn btn-danger">Shutdown</a>
+              {% endif %}
+          </td>
+          <td>{{ ip.user_name }}</td>
+          <td>{{ ip.latest_update }}</td>
+          <td>
+            <a href="{% url 'edit_ip' ip.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete_ip' ip.id %}" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No IP addresses found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

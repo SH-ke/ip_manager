@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Edit IP Address</h2>
+  <form method="POST" action="{% url 'edit_ip' ip.id %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="dynamic_ip">Dynamic IP</label>
+      <input type="text" class="form-control" id="dynamic_ip" name="dynamic_ip" value="{{ ip.dynamic_ip }}" required>
+    </div>
+    <div class="form-group">
+      <label for="host_status">Host Status</label>
+      <select class="form-control" id="host_status" name="host_status" required>
+        <option value="1" {% if ip.host_status == 'alive' %}selected{% endif %}>Alive</option>
+        <option value="0" {% if ip.host_status == 'shutdown' %}selected{% endif %}>Shutdown</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="user_name">User Name</label>
+      <input type="text" class="form-control" id="user_name" name="user_name" value="{{ ip.user_name }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+{% endblock %}

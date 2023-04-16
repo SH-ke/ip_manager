@@ -1,0 +1,41 @@
+# 忽略已编译的 Python 文件
+*.pyc
+
+# 忽略虚拟环境目录
+venv/
+
+# 忽略 SQLite 数据库文件
+db.sqlite3
+
+# 忽略 Django 收集的静态文件
+/staticfiles/
+
+# 忽略用户上传的媒体文件
+/media/
+
+# 忽略 IDE 或文本编辑器特定的文件
+.vscode/
+*.pydevproject
+*.project
+*.settings/
+*.idea/
+
+# 忽略敏感或私人信息
+secret_key.txt
+*.env
+*.pyc
+*.pyo
+
+# 忽略备份文件
+*~
+*.bak
+*.swp
+
+# 忽略 bootstrap 框架
+static
+# 其他参考资料
+reference
+# 数据库的 json 备份
+data.bak.json
+# 数据库建立的文件
+*/migrations/*

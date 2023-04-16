@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+    <h1>Welcome to our site!</h1>
+    <p class="lead">We offer a wide range of products and services.</p>
+    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+  </div>
+
+  <!-- Features -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Feature 1</h2>
+      <p>Our first feature is great.</p>
+      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Feature 2</h2>
+      <p>Our second feature is even better.</p>
+      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Feature 3</h2>
+      <p>Our third feature is the best.</p>
+      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+  </div>
+
+  <!-- Carousel -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="https://w.wallhaven.cc/full/1p/wallhaven-1ppld1.jpg" alt="Slide 1" style="width: 1300px; height: 400px; object-fit: cover;">
+        <div class="carousel-caption">
+          <h3>Slide 1</h3>
+          <p>Some description for slide 1</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="https://w.wallhaven.cc/full/2e/wallhaven-2emrgx.jpg" alt="Slide 2" style="width: 1300px; height: 400px; object-fit: cover;">
+        <div class="carousel-caption">
+          <h3>Slide 2</h3>
+          <p>Some description for slide 2</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="https://w.wallhaven.cc/full/4d/wallhaven-4dg2mj.jpg" alt="Slide 3" style="width: 1300px; height: 400px; object-fit: cover;">
+        <div class="carousel-caption">
+          <h3>Slide 3</h3>
+          <p>Some description for slide 3</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+
+  <!-- Call to action -->
+  <section id="cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Ready to get started?</h2>
+                <a href="{% url 'add_ip' %}" class="btn btn-primary">Add IP Address</a>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <p>&copy; 2023 Your Company Name. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+  </footer>
+
+{% endblock %}
