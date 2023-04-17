@@ -16,18 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from HOME import views
+from HOME import views, api
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('ip_list/', views.ip_list, name='ip_list'),
-    path('add/', views.create_ip, name='add_ip'),
+    path('add/', views.add_ip, name='add_ip'),
     path('edit/<int:pk>/', views.edit_ip, name='edit_ip'),
     path('delete/<int:pk>/', views.delete_ip, name='delete_ip'),
     path('download/ip/', views.download_ip_addresses, name='download_ip_addresses'), 
     path('download/<str:filename>/', views.download_script, name='download_script'), 
     path('load_data/', views.load_data, name='load_data'),
+    path('api/update/', api.update, name='update'),
 ]
 

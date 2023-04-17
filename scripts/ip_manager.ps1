@@ -1,24 +1,21 @@
-$base_url = "127.0.0.1:8080"
+$base_url = "http://20.163.99.216:8080"
+$base_url = "http://localhost:8000"
 
-# Function to create a new IP address entry using a POST request
-function create_ip_address {
-    $url = "$base_url/ip_addresses/create/"
-    $data = @{
-        dynamic_ip = $env:REMOTE_ADDR
-        host_status = 1
-        user_name = "johndoe"
-        # latest_update = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+function sent_ip() {
+    $url = "$base_url/api/update/"
+    # get ip_address
+    $ipAddress = Get-NetIPAddress | Where-Object {$_.PrefixOrigin -eq "Dhcp"} | Select-Object -ExpandProperty IPAddress
+    $params = @{
+        "dynamic_ip" = $ipAddress
+        "user_name" = 'shke'
+        "host_status" = $true
     }
-    $json = $data | ConvertTo-Json
-    $headers = @{
-        "Content-Type" = "application/json"
-    }
-    $response = curl -X POST -H $headers -d $json $url
-    return $response
+    $response = Invoke-WebRequest -Uri $url -Method Get -Body $params
+    return $response.Content
 }
 
 ## todo 
-'''
+<# '''
 1. update host_status alive by user_name
     every 5 mins
     download latest json file
@@ -29,4 +26,5 @@ function create_ip_address {
 4. trans pwsh script to bash script 
 
 5. git commit to feat-build 
-'''
+done
+''' #>

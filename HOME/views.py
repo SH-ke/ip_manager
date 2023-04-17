@@ -16,10 +16,10 @@ def ip_list(request):
     return render(request, 'ip_list.html', {'ip_addresses': ip_addresses})
 
 
-def create_ip(request):
+def add_ip(request):
     # 进入提交界面
     if request.method == 'GET':
-        return render(request, 'create_ip.html')
+        return render(request, 'add_ip.html')
     
     # show ip list
     form = IPAddressForm(request.POST)

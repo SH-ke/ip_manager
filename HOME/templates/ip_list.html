@@ -41,9 +41,9 @@
           <td>{{ ip.dynamic_ip }}</td>
           <td>
               {% if ip.host_status == True %}
-                  <a class="btn btn-success">Alive</a>
+                  <a class="btn btn-success disabled">Alive</a>
               {% else %}
-                  <a class="btn btn-danger">Shutdown</a>
+                  <a class="btn btn-danger disabled">Shutdown</a>
               {% endif %}
           </td>
           <td>{{ ip.user_name }}</td>
