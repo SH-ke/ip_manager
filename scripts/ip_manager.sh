@@ -45,11 +45,20 @@ ip_read() {
 ip_update
 ip_read "$user_name"
 ## todo 
-# 1. update host_status alive by user_name
-#     every 5 mins
-#     download latest json file
-# 2. test django_crontab at ubuntu
-# 3. trans pwsh script to bash script 
-# 4. file method export, upload 
-# 5. README.md, LICENSE, 
+# 1. ip_manager btn add: file method export, upload 
+#       update ui, *.pwsh, *.sh
+# 2. README.md, LICENSE, 
+#         about usage: pwsh config, auto task in windows
+# 3. HOME ui devel, pixiv pic update
+# 4. django origin admin settings  
+
+## commit
+# 1. update alive user only, 
+#         remind the last update time of shutdown user
+# 2. change time zone to Asia/Shanghai
+# 3. save feat-ui, for home page pic update 
+# 4. pwsh: Create_IP_Task.
+#         add ScheduledTask by pwsh script
+# 5. set user_name unique, 
+#         and (user_name, dynamic_ip) pair unique as well
 

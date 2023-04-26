@@ -32,12 +32,13 @@ $base_url = "http://20.163.99.216:8080"
 # $base_url = "http://localhost:8000"
 # download json file in this path
 $JsonFilePath = '~'
-$user_name = 'shke'
+$user_name = 'template'
 
 function ip_update() {
     $url = "$base_url/api/update/"
     # get ip_address
-    $ipAddress = Get-NetIPAddress | Where-Object {$_.PrefixOrigin -eq "Dhcp"} | Select-Object -ExpandProperty IPAddress
+    # Get-NetIPAddress | Sort-Object -Property InterfaceIndex | Format-Table
+    $ipAddress = Get-NetIPAddress | Where-Object {$_.PrefixOrigin -eq "Dhcp" -and $_.AddressState -eq "Preferred"} | Select-Object -ExpandProperty IPAddress
 
     $params = @{
         "dynamic_ip" = $ipAddress
@@ -63,6 +64,24 @@ function ip_read {
     $dynamicIp = ($json | Where-Object { $_.user_name -eq $UserName }).dynamic_ip
     # Write-Output $dynamicIp
     return $dynamicIp
+}
+
+# 自动任务
+<#
+您可以使用以下命令来查看计划任务的详细信息：
+```powershell
+Get-ScheduledTask -TaskName "IP Manager Auto-Task" | Select-Object TaskName, TaskPath, State, LastRunTime, NextRunTime
+```
+这将显示任务名称，任务路径，状态，上次运行时间和下次运行时间。如果您想查看计划任务的所有详细信息，请使用以下命令：
+```powershell
+Get-ScheduledTask -TaskName "IP Manager Auto-Task" | fl *
+```
+这将显示计划任务的所有详细信息。
+#>
+function Create_IP_Task {
+    $Trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes 5) -RepetitionDuration (New-TimeSpan -Days 365)
+    $Action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-ExecutionPolicy Bypass -Command "& {ip_update}"'
+    Register-ScheduledTask -TaskName "IP Manager Auto-Task" -Trigger $Trigger -Action $Action
 }
 
 ## functions : 
