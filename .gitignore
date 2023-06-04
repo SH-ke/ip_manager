@@ -19,6 +19,7 @@ db.sqlite3
 *.project
 *.settings/
 *.idea/
+.ropeproject
 
 # 忽略敏感或私人信息
 secret_key.txt
